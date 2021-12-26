@@ -25,7 +25,7 @@ def getData(r):
     data=[0 for v in range(r)]
     return data
 
-def showPic2(x,y):
+def mySolve3(x,y,s):
     parame = []
     yparam=[]
     n=len(x)
@@ -90,8 +90,8 @@ def showPic2(x,y):
     parame.append(data)
     yparam.append(0)
 
-    print(len(parame[0]))
-    print(len(yparam))
+    #print(len(parame[0]))
+    #print(len(yparam))
     a = np.array(parame)
     b = np.array(yparam)
 
@@ -107,16 +107,19 @@ def showPic2(x,y):
         else:
             xt,yt=getXY(x[i],x[i+1],-0.01,res[i*w],res[i*w+1],res[i*w+2],res[i*w+3])
         i=i+1
-        plt.plot(xt,yt,'r')
-    print(a)
-    print(b)
-    print(res)
-    print(res)
+        if(s):
+            plt.plot(xt,yt,'r')
+    #print("系数",a)
+    #print("系数",b)
+    #print("多项式系数a3 - a0系数，分别对应每一段的函数")
+    #print(res)
     i=0
     while i<n:
-        plt.plot(x[i],y[i],'bo')
+        if(s):
+            plt.plot(x[i],y[i],'bo')
         i=i+1
     plt.title(u"任意点三次样条曲线差值算法")
+    return res
 
 
 def getXY(x0,x1,l,a,b,c,d):
@@ -128,16 +131,16 @@ def main():
     """
     x = [3, 4.5, 7, 9]
     y = [2.5, 4.2, 2, 1]
-    showPic2(x,y)
+    mySolve3(x,y)
     x = [8, 15, 17, 20]
     y = [3.6, 8.2, 2, 5]
-    showPic2(x,y)
+    mySolve3(x,y)
     """
     x = [3, 4.5, 7, 9,10, 15, 17, 20,28,33,40,56]
     y = [2.5, 4.2, 2, 1,3.6, 8.2, 2, 5,6,1,9,22]
     #i=0
     #while
-    showPic2(x,y)
+    mySolve3(x,y)
     plt.show()
 
 if __name__ == '__main__':
